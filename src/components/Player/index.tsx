@@ -1,6 +1,12 @@
+import { useContext } from 'react';
+import { PlayerContext } from '../../contexts/PlayerContext';
 import styles from './styles.module.scss';
 
 export function Player() {
+  const { episodeList, currentEpisodeIndex, play } = useContext(PlayerContext);
+
+  const episode = episodeList[currentEpisodeIndex];
+
   return (
     <div className={styles.playerContainer}>
       <header>
@@ -28,7 +34,7 @@ export function Player() {
           <button type="button">
             <img src="/play-previous.svg" alt="Tocar anterior" />
           </button>
-          <button type="button" className={styles.playButton}>
+          <button type="button" className={styles.playButton} onClick={() => play()}>
             <img src="/play.svg" alt="Tocar" />
           </button>
           <button type="button">
